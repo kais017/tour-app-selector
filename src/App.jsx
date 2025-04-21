@@ -13,7 +13,7 @@ function App() {
   };
 
   // Get unique destinations for the dropdown
-  const destinations = ['All', ...new Set(tours.map((tour) => tour.destination))];
+  const destinations = ['All', ...new Set(tours.map((tour) => tour.name))];
 
   return (
     <main>
