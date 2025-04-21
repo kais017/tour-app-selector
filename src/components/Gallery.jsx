@@ -26,7 +26,7 @@ const Gallery = ({ tours, setTours, onRemove, selectedDestination }) => {
     // Filter tours based on selected destination
     const filteredTours = selectedDestination === 'All'
         ? tours
-        : tours.filter((tour) => tour.destination === selectedDestination);
+        : tours.filter((tour) => tour.name === selectedDestination);
 
     if (loading) {
         return (
