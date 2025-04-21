@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import TourCard from './TourCard'; // import TourCard component
 
-const Gallery = ({ tours, setTours, onRemove }) => {
+const Gallery = ({ tours, setTours, onRemove, selectedDestination }) => {
     const [loading, setLoading] = useState(true); // loading state
     const [error, setError] = useState(false); // error state
-    const [selectedDestination, setSelectedDestination] = useState('All'); // state for selected destination
 
     // Fetch tours data
     const fetchTours = async () => {
@@ -23,9 +22,6 @@ const Gallery = ({ tours, setTours, onRemove }) => {
     useEffect(() => {
         fetchTours(); // call fetchTours function on component mount
     }, []); // empty dependency array to run only once
-
-    // Get unique destinations for the dropdown
-    const destinations = ['All', ...new Set(tours.map((tour) => tour.destination))];
 
     // Filter tours based on selected destination
     const filteredTours = selectedDestination === 'All'
@@ -60,21 +56,6 @@ const Gallery = ({ tours, setTours, onRemove }) => {
     return (
         <section className="tours">
             <h2>Our Tours</h2>
-            {/* Dropdown for selecting destination */}
-            <div className="filter">
-                <label htmlFor="destination">Filter by Destination:</label>
-                <select
-                    id="destination"
-                    value={selectedDestination}
-                    onChange={(e) => setSelectedDestination(e.target.value)}
-                >
-                    {destinations.map((destination, index) => (
-                        <option key={index} value={destination}>
-                            {destination}
-                        </option>
-                    ))}
-                </select>
-            </div>
             <div className="tours-list">
                 {filteredTours.map((tour) => (
                     <TourCard key={tour.id} {...tour} onRemove={onRemove} />
