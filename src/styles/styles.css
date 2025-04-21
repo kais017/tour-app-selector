@@ -74,3 +74,15 @@ padding: 1rem;
       align-items: center;
     }
   }
+
+.filter {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter select {
+    padding: 5px;
+    font-size: 16px;
+}
